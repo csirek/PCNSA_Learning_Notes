@@ -1,0 +1,196 @@
+# Palo Alto Firewall Introduction
+
+- Next-generation prevention-focused security system
+  User, Application, Content
+
+- Key Capabilities
+  User-ID, App-ID
+  Zero Trust
+- Advanced Threat Prevention
+  IPS, URL Filtering, WildFire & DNS protection
+- Advanced Logging
+  Cortex Data Lake
+- SD-WAN integration
+
+- VM-Series
+- Prisma Access
+  Cloud-based firewall
+- Physical Appliances
+  220, 800, 3200, 5200 & 7000 PA series
+
+# Processing Architecture
+
+- Single-Pass Parallel Processing (SP3)
+  Simultaneous traffic classification & enforcement
+  Full-stack single-pass inspection
+
+- Traffic Planes
+  Palo Alto splits hardware resources between two traffic planes
+- Control
+  Configuration, logging, reporting
+- Data
+  Signature matching, security & network processing
+
+# Management Options
+
+- Web Interface
+  Local - http ot https from local PC
+  Centralized - Panorama
+
+- CLI
+  Console, SSH, Telnet
+
+- API
+  XML
+  REST
+
+- Management Port
+  Special interface designed for administration
+  Part of the Control Plane
+- Data ports also support management functions
+  Management Profiles
+  Service Routes
+
+# Service Routes
+
+- Required to provide access to external services through data ports
+  Device > Setup > Services > Service Route Configuration > Customize
+
+# Firewall CLI
+
+- Palo Alto firewalls use two CLI modes
+  Operational - Basic networking/system commands & verification
+  Configuration - Accessible via configure
+
+- CLI Enhancements
+  Use find to figure out the command syntax
+  Use "?"
+  Use the "Tab" key
+  Use the "|" symbol along with match or except for output filtering
++ - command needs a value
+* - this is required to run a command
+> - more options to choose
+
+# Configuration Files
+
+- Running Configuration
+  Current configuration enforced in the Data Plane
+  Control the firewall's behavior
+  Saved to running-config.xml
+
+- Candidate Configuration
+  Temporary configuration stored in the memory in the Control Plane
+  Saved as either default snapshot.xml or as a custom XML file
+  Requires a commit
+
+- Revert to Last Saved Configuration
+  Replaces current candidate configuration settings with a saved candidate configuration file
+- Revert to Running Configuration
+  Replaces current candidate configuration settings with the current running configuration
+- Load
+  Overwrites the current candidate configuration with a config file
+- Export
+  Exports a Current/Running Configuration file as an XML (backups)
+- Import, Save
+
+# Dynamic Updates
+
+- Keep the system up-to-date with latest threats, applications & more
+
+# General Configuration
+
+- Device > Setup > Management
+  Hostname
+  Domain
+  Login Banner
+
+- Device > Setup > Operations
+  SNMP
+
+- Device > Setup > Services
+  DNS
+  NTP
+
+# Admin Roles
+
+- Define the type of access that an administrator has to the firewall
+  Dynamic - based on pre-built profiles
+  Role Based - Custoner access for granular control
+
+- Configuration
+  Device > Administrators
+  Device > Admin Roles
+
+# Data Interfaces
+
+- PAN-OS supports several types of interfaces and can operate in multiple deployments
+  Tap, Virtual Wire, Layer 2, Layer 3
+
+- Tap
+  Works on a copy of network traffic
+  Port mirroring (SPAN)
+  Deployed for logging & visibility
+
+- Virtual Wire
+  For inline deployments
+  Traffic control, decryption, QoS, etc.
+  A logical connection of two ports
+  No L2/L3 addresses
+  No management capabilities
+  Easy to integrate
+  Allows for subinterfaces
+- Virtual Wire interfaces must be attached to a Virtual Wire Object
+  Default Virtual Wire ports may need to be removed
+
+- Layer 2
+  Used for L2 switching
+  Inline
+  Require a VLAN Object
+  Support subinterfaces
+
+- Layer 3
+  Used for L3 routing (IPv4, IPv6)
+  Inline
+  Require a Virtual Router
+  Support subinterfaces & management
+
+- Other interfcaes
+
+- Loopback
+  Virtual L3 ports internal to the firewall
+  Used in many scenarios
+  Routing, DNS sinkholes & more
+
+- Tunnel
+  Virtual interface used for VPN representation
+
+# Virtual Router
+
+- Enables routing functions
+  Interfaces
+  RIB - Control Plane
+  FIB - Data Plane
+
+- Supported Routing Technologies
+  Static routes
+  OSPF, OSPFv3, BGP, RIP
+  PIM-SM, PIN-ASM, PIM-SSM, IGMP version 1/2/3
+
+# Security Zones
+
+- A group of interfaces representing a segment controlled by the firewall
+  LAN1, Internet, etc.
+
+- A firewall interface can belong to only one zone
+  Interface type & zone type must match
+  Zone-unassigned interface does not process traffic
+
+- Zones affects the data traffic
+  Intra-zone - allowed by default
+  Inter-zone - Policy Rule to allow packets through
+
+
+
+
+
+
