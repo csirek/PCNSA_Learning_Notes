@@ -1,4 +1,6 @@
-# Palo Alto Firewall Introduction
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+			### Palo Alto Firewall Introduction ###
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - Next-generation prevention-focused security system
   User, Application, Content
@@ -189,8 +191,94 @@
   Intra-zone - allowed by default
   Inter-zone - Policy Rule to allow packets through
 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+			### Palo Alto Firewall Policies ###
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+# Policies Overview
 
+- Enforce rules & actions to safely enable applications
+- Supported Policies
+  Security
+  NAT
+  QoS
+  Policy Based Forwarding
+  Decryption
+  Application Override
+  Authentication
+  DoS Protection
+  Tunnel Inspection
+  SD-WAN
 
+# Policy Rules
 
+- Polices are defined through Rules
+  Common Criteria
+  Conditions & Actions
 
+- General Rule Processing
+  Top-down until a match is found
+
+# Security Policy Overview
+
+- Primary traffic control mechanism
+  Configured through Rules
+    Attribute-based
+      Source/Destination Zone, Addresses, Applications & more
+    Top-down evaluation
+      First-match processing logic
+      Add specific rules first
+
+# Security Policy Rules
+
+- Rule Components
+  Name
+  Source/Destination Zone
+  Rule Type: Intrazone, Interzone, Universal (Intra + Inter)
+  Source/Destination Address
+  User
+  HIP Profile
+  Application
+  Service: Select, any, applicaton-default
+  URL Category
+  Profile Setting: Only for "Allow" rules
+  Tag
+  Other Settings: Description, Audit, Comment, Logging, QoS
+  Action
+
+- Action Types
+  Allow
+  Deny: Block traffic; Based on the application's default Deny Action
+  Drop: Silently drops the application; Optionally sends ICMP Unreachable (used in UDP based applications)
+  Reset: Client, Server, Both; Optionally sends ICMP Unreachable (used in UDP based applications)
+
+- Default Rules
+  The last two (pre-defined) rules of the Policy
+  Intrazone-default
+  Interzone-default
+  Processed last: Only apply for traffic that does not match any user-defined rules
+
+# Policy Objects
+
+- Containers for representation of discrete data
+- Object Types
+  Address (Group)/Region
+  User (Group)
+  Application Group
+  Application Filter
+  Service (Group)
+
+# Working with Security Policy
+
+- Verification & Troubleshooting
+  Device > Troubleshooting > Security Policy Match
+  Rule Usage: Hit Count, Last hit, First hit
+  Device > Setup > Management > Policy Rulebase Settings
+
+# Verify routing table
+  show routing route
+
+# ICMP and ping
+
+- ICMP application - all ICMP messages except echos (ping)
+- ping application - ICMP echo
